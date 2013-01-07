@@ -1,0 +1,8 @@
+[% INCLUDE header_include.tt %]
+
+<div>
+<h2>[% name %]</h2>
+<div>[% desciption %]</div>
+</div>
+   
+[% INCLUDE footer_include.tt %]
