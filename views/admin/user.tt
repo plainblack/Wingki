@@ -51,88 +51,12 @@
 <fieldset>
 <legend>Special Privileges</legend>
 <div class="field">
-    <label>Approved For Invoice</label><br>
-    <input type="radio" name="approved_for_invoice" value="1" id="approved_for_invoice_yes"[% IF user.approved_for_invoice %] checked=1[% END %]><label for="approved_for_invoice_yes">Yes</label>
-    <input type="radio" name="approved_for_invoice" value="0" id="approved_for_invoice_no"[% UNLESS user.approved_for_invoice %] checked=1[% END %]><label for="approved_for_invoice_no">No</label><br>
-</div>
-<div class="field">
     <label>Admin</label><br>
     <input type="radio" name="admin" value="1" id="admin_yes"[% IF user.admin %] checked=1[% END %]><label for="admin_yes">Yes</label>
     <input type="radio" name="admin" value="0" id="admin_no"[% UNLESS user.admin %] checked=1[% END %]><label for="admin_no">No</label><br>
 </div>
-<div class="field">
-    <label>Crafter</label><br>
-    <input type="radio" name="crafter" value="1" id="crafter_yes"[% IF user.crafter %] checked=1[% END %]><label for="crafter_yes">Yes</label>
-    <input type="radio" name="crafter" value="0" id="crafter_no"[% UNLESS user.crafter %] checked=1[% END %]><label for="crafter_no">No</label><br>
-</div>
-<div class="field">
-    <label>Curator</label><br>
-    <input type="radio" name="curator" value="1" id="curator_yes"[% IF user.curator %] checked=1[% END %]><label for="curator_yes">Yes</label>
-    <input type="radio" name="curator" value="0" id="curator_no"[% UNLESS user.curator %] checked=1[% END %]><label for="curator_no">No</label><br>
-</div>
 </fieldset>
 
-    <fieldset>
-    <legend>Production Flags</legend>
-    <div class="field">
-        <label>VIP</label><br>
-        <input type="radio" name="vip" value="1" id="vip_yes"[% IF user.vip %] checked=1[% END %]><label for="vip_yes">Yes</label>
-        <input type="radio" name="vip" value="0" id="vip_no"[% UNLESS user.vip %] checked=1[% END %]><label for="vip_no">No</label><br>
-    </div>
-    <div class="field">
-        <label>Copyright Violator</label><br>
-        <input type="radio" name="copyright_violator" value="1" id="copyright_violator_yes"[% IF user.copyright_violator %] checked=1[% END %]><label for="copyright_violator_yes">Yes</label>
-        <input type="radio" name="copyright_violator" value="0" id="copyright_violator_no"[% UNLESS user.copyright_violator %] checked=1[% END %]><label for="copyright_violator_no">No</label><br>
-    </div>
-    <div class="field">
-        <label>Shipping Victim</label><br>
-        <input type="radio" name="shipping_victim" value="1" id="shipping_victim_yes"[% IF user.shipping_victim %] checked=1[% END %]><label for="shipping_victim_yes">Yes</label>
-        <input type="radio" name="shipping_victim" value="0" id="shipping_victim_no"[% UNLESS user.shipping_victim %] checked=1[% END %]><label for="shipping_victim_no">No</label><br>
-    </div>
-    <div class="field">
-        <label>Perfectionist</label><br>
-        <input type="radio" name="perfectionist" value="1" id="perfectionist_yes"[% IF user.perfectionist %] checked=1[% END %]><label for="perfectionist_yes">Yes</label>
-        <input type="radio" name="perfectionist" value="0" id="perfectionist_no"[% UNLESS user.perfectionist %] checked=1[% END %]><label for="perfectionist_no">No</label><br>
-    </div>
-    </fieldset>    
-</div>
-
-<div class="floating_block">
-    <fieldset>
-        <legend>Adjust Shop Credit</legend>
-        <div class="field">
-            <label>Current Amount</label><br>
-            [% money(user.shop_credit) %]
-        </div>
-        <div class="field">
-            <label for="shop_credit_amount">Adjustment Amount</label><br>
-            $<input type="text" name="shop_credit_amount" value="0.00" id="shop_credit_amount" style="width: 40px"><br>
-        </div>
-        <div class="field">
-            <label for="shop_credit_amount">Reason For Adjustment</label><br>
-            <input type="text" name="shop_credit_reason" id="shop_credit_reason"><br>
-            Adjustment will be ignored without a reason.<br>
-        </div>
-    </fieldset>
-</div>
-
-<div class="floating_block">
-    <fieldset>
-        <legend>Adjust Crafter Points</legend>
-        <div class="field">
-            <label>Current Amount</label><br>
-            [% user.crafter_points || 0 %]
-        </div>
-        <div class="field">
-            <label for="crafter_points_amount">Adjustment Amount</label><br>
-            <input type="text" name="crafter_points_amount" value="0" id="crafter_points_amount"><br>
-        </div>
-        <div class="field">
-            <label for="crafter_points_amount">Reason For Adjustment</label><br>
-            <input type="text" name="crafter_points_reason" id="crafter_points_reason"><br>
-            Adjustment will be ignored without a reason.<br>
-        </div>
-    </fieldset>
 </div>
 
 </form>
