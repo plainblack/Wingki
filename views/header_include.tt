@@ -1,0 +1,10 @@
+<head>
+<link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="//cdn.jsdelivr.net/pnotify/1.2/jquery.pnotify.default.css" rel="stylesheet">
+<meta charset="UTF-8">
+[% section_head_tags %]
+[% head_tags %]
+<title>[% page_title %]</title>
+</head>
+<body>
+

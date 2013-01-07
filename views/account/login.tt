@@ -1,5 +1,1 @@
-[% INCLUDE account/header_include.tt %]
-
-[% INCLUDE account/authenticate_include.tt %]
-
-[% INCLUDE account/footer_include.tt %]
+hello
