@@ -1,0 +1,18 @@
+{
+    "renderer" : "TT",
+    "header" : [
+        { "To" : "[% me.real_name || me.display_name %] <[% me.email %]>" },
+        { "From" : "<no-reply@example.com>" },
+        { "Subject" : "Password Reset" }
+    ],
+    "alternatives" : [
+        { 
+            "type" : "text/plain",
+            "path" : "body.txt"
+        },
+        { 
+            "type" : "text/html",
+            "path" : "body.html"
+        }
+    ] 
+}
