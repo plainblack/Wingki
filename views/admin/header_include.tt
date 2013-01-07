@@ -7,4 +7,16 @@
 <title>[% page_title %]</title>
 </head>
 <body>
-<h1>Adminstrative Function</h1>
+<div class="container">
+
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav">
+      <li><a href="/account">Users</a></li>
+    </ul>
+  </div>
+</div>
+
+<h1>[% page_title %]</h1>
+
