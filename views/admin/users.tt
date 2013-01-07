@@ -1,9 +1,6 @@
 [% INCLUDE includes/admin_header.tt %]
-[% USE date = DateRFC3339 %]
+[% USE date = Date %]
 
-
-    
-    
 [% IF users.items.size %]
 
 <table>
@@ -29,8 +26,6 @@
 
 [% END %]
     
-
-
 <div class="floating_block">
 <form  action="/admin/users" method="GET">
 <fieldset>
@@ -72,15 +67,6 @@
 </div>
 </fieldset>
 </form>
-</div>
-
-<div class="floating_block">
-    <fieldset>
-<legend>Options</legend>
-<ul>
-<li><a href="/admin/best-customers">Switch to Best Customers</a></li>
-</ul>
-</fieldset>
 </div>
 
 [% INCLUDE includes/admin_footer.tt %]
