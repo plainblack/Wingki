@@ -1,0 +1,38 @@
+[% INCLUDE login_include.tt %]
+
+<div class="floating_block">
+<form action="/account/create" method="POST" enctype="multipart/form-data">
+[% IF params.redirect_after %]
+<input type="hidden" name="redirect_after" value="[% params.redirect_after %]">
+[% END %]
+[% IF sso_id || params.sso_id %]
+<input type="hidden" name="sso_id" value="[% sso_id || params.sso_id %]">
+[% END %]
+<fieldset>
+<legend>Create An Account</legend>
+<div class="field">
+    <label for="username">Username</label><br>
+    <input type="text" name="username" value="[% params.username FILTER html %]" id="username"> (Required)<br>
+</div>
+<div class="field">
+    <label for="real_name">Real Name</label><br>
+    <input type="text" name="real_name" value="[% params.real_name FILTER html %]" id="real_name"><br>
+</div>
+<div class="field">
+    <label for="email">Email Address</label><br>
+    <input type="text" name="email" value="[% params.email FILTER html %]" id="email"> (Required)<br>
+</div>
+<div class="field">
+    <label for="password1">Password</label><br>
+    <input type="password" name="password1" id="password1"> (Required)<br>
+</div>
+<div class="field">
+    <label for="password2">Verify Password</label><br>
+    <input type="password" name="password2" id="password2"> (Required)<br>
+</div>
+<div class="field">
+    <input class="button" type="submit" value="Create Account"><br>
+</div>
+</fieldset>
+</form>
+</div>

@@ -20,7 +20,7 @@
 }
 </style>
 [% END %]
-[% INCLUDE includes/account_header.tt %]
+[% INCLUDE header_include.tt %]
 
 [% permissions = {
     view_my_files   = "View your files and folders."
@@ -62,4 +62,4 @@
 Our forum software isn't hosted on the same server as the shop, so you'll see this message when you go to our community site. In addition, The Game Crafter now supports applications from third party developers. This means that programmers can create new website tools and mobile apps that work with The Game Crafter service. These applications don't require a separate username or password because they use your TGC user account. As a safety precaution, you will need to approve access to an application the first time you attempt to you use.
 </p>
 
-[% INCLUDE includes/account_footer.tt %]
+[% INCLUDE footer_include.tt %]

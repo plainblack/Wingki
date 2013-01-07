@@ -1,0 +1,29 @@
+<div class="floating_block">
+<form action="/login" method="POST" enctype="multipart/form-data">
+[% IF redirect_after || params.redirect_after %]
+<input type="hidden" name="redirect_after" value="[% redirect_after || params.redirect_after %]">
+[% END %]
+[% IF sso_id || params.sso_id %]
+<input type="hidden" name="sso_id" value="[% sso_id || params.sso_id %]">
+[% END %]
+<fieldset>
+<legend>Login</legend>
+<div class="field">
+    <label for="login">Username or Email Address</label><br>
+    <input type="text" name="login" value="[% params.login %]" id="login"><br>
+</div>
+<div class="field">
+    <label for="password">Password</label><br>
+    <input type="password" name="password" value="[% params.password %]" id="password"><br>
+</div>
+<div class="field">
+    <input class="button" type="submit" value="Login"><br>
+</div>
+[% IF params.login %]
+<p><a href="/account/reset-password">I forgot my password.</a></p>
+[% END %]
+</fieldset>
+</form>
+
+<p><a href="/account/facebook?sso_id=[% sso_id || params.sso_id %]&redirect_after=[% redirect_after || params.redirect_after %]"><img src="[% settings.cdn_prefix %]/facebook-connect-button.png" alt="Facebook" title="Connect With Facebook"></a></p>
+</div>

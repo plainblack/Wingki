@@ -1,5 +1,5 @@
-[% INCLUDE includes/basic_header.tt %]
+[% INCLUDE header_include.tt %]
 
-[% INCLUDE includes/authenticate.tt %]
+[% INCLUDE authenticate_include.tt %]
 
-[% INCLUDE includes/basic_footer.tt %]
+[% INCLUDE footer_include.tt %]
