@@ -1,4 +1,4 @@
-[% INCLUDE includes/admin_header.tt %]
+[% INCLUDE admin/admin_header.tt %]
 [% USE date = Date %]
 
 [% IF users.items.size %]
@@ -69,4 +69,4 @@
 </form>
 </div>
 
-[% INCLUDE includes/admin_footer.tt %]
+[% INCLUDE admin/admin_footer.tt %]
