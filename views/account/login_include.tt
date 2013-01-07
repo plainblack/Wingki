@@ -1,5 +1,4 @@
-<div class="floating_block">
-<form action="/login" method="POST" enctype="multipart/form-data">
+<form action="/login" method="POST" enctype="multipart/form-data" class="form-horizontal">
 [% IF redirect_after || params.redirect_after %]
 <input type="hidden" name="redirect_after" value="[% redirect_after || params.redirect_after %]">
 [% END %]
@@ -8,17 +7,23 @@
 [% END %]
 <fieldset>
 <legend>Login</legend>
-<div class="field">
-    <label for="login">Username or Email Address</label><br>
-    <input type="text" name="login" value="[% params.login %]" id="login"><br>
-</div>
-<div class="field">
-    <label for="password">Password</label><br>
-    <input type="password" name="password" value="[% params.password %]" id="password"><br>
-</div>
-<div class="field">
-    <input class="button" type="submit" value="Login"><br>
-</div>
+  <div class="control-group">
+    <label class="control-label" for="login">Username or Email Address</label>
+    <div class="controls"> 
+      <input type="text" name="login" value="[% params.login %]" id="login">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="password">Password</label>
+    <div class="controls"> 
+      <input type="password" name="password" value="[% params.password %]" id="password">
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls"> 
+       <input class="btn" type="submit" value="Login">
+    </div>
+  </div>
 [% IF params.login %]
 <p><a href="/account/reset-password">I forgot my password.</a></p>
 [% END %]
@@ -26,4 +31,3 @@
 </form>
 
 <p><a href="/account/facebook?sso_id=[% sso_id || params.sso_id %]&redirect_after=[% redirect_after || params.redirect_after %]"><img src="//photos-c.ak.fbcdn.net/hphotos-ak-ash3/11832_234341106728_6386255_a.jpg" alt="Facebook" title="Connect With Facebook"></a></p>
-</div>

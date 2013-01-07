@@ -7,4 +7,20 @@
 <title>[% page_title %]</title>
 </head>
 <body>
+<div class="container">
+
+
+<div class="navbar">
+  <div class="navbar-inner">
+    <ul class="nav">
+      <li><a href="/account">Account</a></li>
+      [% IF current_user.developer %]
+        <li><a href="/account/apikeys">API Keys</a></li>
+      [% END %]
+      <li><a href="/logout">Log Out</a></li>
+    </ul>
+  </div>
+</div>
+
+<h1>[% page_title %]</h1>
 

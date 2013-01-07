@@ -1,33 +1,22 @@
+[% page_title = "API Keys" %]
 [% INCLUDE account/header_include.tt %]
 
-<div class="floating_block">
-<form action="/account/apikey" method="POST" enctype="multipart/form-data">
+
+<div class="row">
+
+<div class="span6">
+<form action="/account/apikey" method="POST" enctype="multipart/form-data" class="form-horizontal">
 <fieldset>
 <legend>Create An API Key</legend>
-<div class="field">
-    <label for="name">Application Name</label><br>
-    <input type="text" name="name" id="name"><br>
-    This must be unique among all applications in our system.<br>
-</div>
-<div class="field">
-    <label for="uri">Application URL</label><br>
-    <input type="text" name="uri" id="uri"><br>
-    Optional, but appreciated. The URL of your application if it is a web app.<br>
-</div>
-<div class="field">
-    <label for="reason">Reason</label><br>
-    <input type="text" name="reason" id="reason"><br>
-    Optional, but appreciated. The reason you are building your app. What does it do?<br>
-</div>
-<div class="field">
-    <input class="button" type="submit" value="Create"><br>
-</div>
+[% INCLUDE account/apikey_form_include.tt %]
 </fieldset>
 </form>
 </div>
 
-<div class="floating_block">
-<table>
+<div class="span6">
+<fieldset>
+<legend>Existing API Keys</legend>
+<table class="table table-striped">
 <tr>
     <th>Application Name</th>
     <th>Public Key</th>
@@ -39,9 +28,12 @@
 </tr>
 [% END %]
 </table>
+</fieldset>
+</div>
+
+</div><!-- row -->
 
 <p>Use your API keys with our <a href="/developer/">API documentation</a> to build your own applications.</p>
 
-</div>
 
 [% INCLUDE account/footer_include.tt %]

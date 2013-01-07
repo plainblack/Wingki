@@ -1,1 +1,6 @@
-hello
+[% page_title = "Log In" %]
+[% INCLUDE header_include.tt %]
+
+[% INCLUDE account/authenticate_include.tt %]
+
+[% INCLUDE footer_include.tt %]

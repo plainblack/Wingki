@@ -1,3 +1,4 @@
+[% page_title = "Error" %]
 [% INCLUDE header_include.tt %]
 
 [% IF code == 401 %]
