@@ -15,7 +15,7 @@ get '/admin/users' => sub {
     else {
         $users = $users->search({id => 'none'}); # don't bother showing anything if they haven't searched
     }
-    template 'admin/users', { current_user => describe($user), page_title => 'Users', users => format_list($users)};
+    template 'admin/users', { current_user => describe($user), page_title => 'Users', users => format_list($users), query => params->{query}, };
 };
 
 post '/admin/user' => sub {
