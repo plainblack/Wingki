@@ -26,7 +26,7 @@
 <ul>
 [% page_num = 1 %]
 [% WHILE page_num <= users.paging.total_pages %]
-    <li><a href="/admin/users?_page_number=[% page_num %]">[% page_num %]</a></li>
+    <li><a href="/admin/users?_page_number=[% page_num %];do_the_search=true;query=[% query %]">[% page_num %]</a></li>
     [% page_num = page_num+1 %]
 [% END %]
 </ul>
