@@ -45,6 +45,7 @@
     Type the first part of a username or email address.<br>
 </div>
 <div class="field">
+    <input type="hidden" name="do_the_search" value="true"><br>
     <input class="button" type="submit" value="Search"><br>
 </div>
 </fieldset>

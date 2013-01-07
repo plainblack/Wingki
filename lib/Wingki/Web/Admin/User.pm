@@ -9,7 +9,7 @@ use Wing::Web;
 get '/admin/users' => sub {
     my $user = get_admin_by_session_id();
     my $users = site_db()->resultset('User');
-    if (params->{query}) {
+    if (params->{submit}) {
         $users = $users->search({ -or => {username => { like => params->{query}.'%'}, email => { like => params->{query}.'%'} }});
     }
     else {
