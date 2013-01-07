@@ -1,5 +1,4 @@
 [% INCLUDE admin/header_include.tt %]
-[% USE date = Date %]
 
 [% IF users.items.size %]
 
@@ -15,7 +14,7 @@
     <td><a href="/admin/user/[% item.id %]">[% item.username %]</a></td>
     <td>[% item.real_name %]</td>
     <td>[% item.email %]</td>
-    <td>[% date.format(item.last_login, '%F<br>%r', 'en_US') %]</td>
+    <td>[% item.last_login %]</td>
     <td><form action="/admin/user/[% item.id %]/become" method="POST"><input type="submit" value="Become" class="button"></form></td>
 </tr>
 [% END %]
