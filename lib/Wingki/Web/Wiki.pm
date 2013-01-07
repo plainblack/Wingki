@@ -16,10 +16,10 @@ post '/wiki' => sub {
     my $current_user = get_user_by_session_id();
     my $status_message = 'Created successfully.';
     my $object = site_db()->resultset('Wiki')->new({});
-    my $params = params();
+    my %params = params();
     eval {
-        $object->verify_creation_params($params, $current_user);
-        $object->verify_posted_params($params, $current_user);
+        $object->verify_creation_params(\%params, $current_user);
+        $object->verify_posted_params(\%params, $current_user);
     };
     if (hug) {
         $status_message = bleep;
@@ -52,7 +52,7 @@ del '/wiki/:id' => sub {
     my $object = fetch_object('Wiki');
     $object->can_use($current_user);
     $object->delete;
-    return redirect '/';
+    return redirect '//';
 };
 
 true;
