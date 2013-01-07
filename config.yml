@@ -12,7 +12,7 @@ engines:
 error_template: error
 layout: main
 log4perl:
-  config_file: /data/TGC/etc/log4perl.conf
+  config_file: /data/Wingki/etc/log4perl.conf
 logger: log4perl
 show_errors: 0
 template: template_toolkit
