@@ -3,6 +3,7 @@ use lib '/data/Wingki/lib', '/data/Wing/lib';
 
 use Dancer;
 # your modules here
+use Wingki::Web::Wiki;
 use Wingki::Web::Account;
 use Wingki::Web::Admin::User;
 use Wing::Web::NotFound;
