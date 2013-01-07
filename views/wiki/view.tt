@@ -4,5 +4,15 @@
 <h2>[% name %]</h2>
 <div>[% desciption %]</div>
 </div>
+
+<div>
+<form action="/wiki/[%id%]" method="DELETE">
+<input class="button" type="submit" value="Delete this page">
+</form>
+</div>
+
+<div>
+Back to the <a href="/">Wiki home page</a>.
+</div>
    
 [% INCLUDE footer_include.tt %]
