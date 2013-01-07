@@ -13,7 +13,10 @@
 <div class="navbar">
   <div class="navbar-inner">
     <ul class="nav">
-      <li><a href="/account">Users</a></li>
+      <li><a href="/admin/users">Users</a></li>
+    </ul>
+    <ul class="nav pull-right">
+      <li><a href="/account">My Account</a></li>
     </ul>
   </div>
 </div>
