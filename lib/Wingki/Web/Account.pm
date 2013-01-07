@@ -41,7 +41,7 @@ any '/logout' => sub {
 get '/account/apikeys' => sub {
     my $user = get_user_by_session_id();
     my $api_keys = $user->api_keys;
-    template 'account/apikeys', {current_user => describe($user, $user), page_title => 'API Keys', apikeys => format_list($api_keys, };
+    template 'account/apikeys', {current_user => describe($user, $user), apikeys => format_list($api_keys, };
 };
 
 post '/account/apikey' => sub {
@@ -68,7 +68,7 @@ get '/account/apikey/:id' => sub {
     my $current_user = get_user_by_session_id();
     my $api_key = fetch_object('APIKey');
     $api_key->can_use($current_user);
-    template 'account/apikey', { current_user => describe($current_user, $current_user), page_title => 'Manage API Key', apikey => describe($api_key, $current_user, };
+    template 'account/apikey', { current_user => describe($current_user, $current_user), apikey => describe($api_key, $current_user, };
 };
 
 del '/account/apikey/:id' => sub {
@@ -101,7 +101,7 @@ post '/account/apikey/:id' => sub {
 
 get '/account' => sub {
     my $user = get_user_by_session_id();
-    template 'account/index', { current_user => describe($user, $user), page_title => 'Account', };
+    template 'account/index', { current_user => describe($user, $user) };
 };
 
 post '/account' => sub {
@@ -241,7 +241,6 @@ get '/sso/authorize' => sub {
     ouch(401, 'User does not match SSO token.') unless $user->id eq $sso->user_id;
     template 'account/authorize', {
         current_user            => describe($user, $user),
-        page_title              => $sso->api_key->name.' Wants Access',
         sso_id                  => $sso->id,
         requested_permissions   => $sso->requested_permissions,
         api_key                 => $sso->api_key->describe,
@@ -259,7 +258,6 @@ get '/sso/success' => sub {
     my $user = get_user_by_session_id();
     template 'account/ssosuccess', {
         current_user            => describe($user, $user),
-        page_title              => 'Single Sign On Success',
     };    
 };
 
@@ -311,10 +309,7 @@ get '/account/profile/:id' => sub {
     my $user = fetch_object('User');
     template 'account/profile', {
         current_user    => describe($current_user, $current_user),
-        page_title      => 'Profile for '.$user->display_name,
         profile_user    => describe($user, $current_user),
-        reviews         => format_list(scalar $user->reviews->search(undef, {order_by => { -desc => 'date_created' }}), include_related_objects => 1),
-        designers       => format_list(scalar $user->designers->search(undef, {order_by => 'name'})),
     };
 };
 
