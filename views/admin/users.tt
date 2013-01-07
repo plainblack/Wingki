@@ -19,9 +19,19 @@
 </tr>
 [% END %]
 </table>
+
 <b>Total: [% users.paging.total_items %]<br>
-<a href="/admin/users?_page_number=[% users.paging.previous_page_number %]">&laquo; Previous Page</a> |
-<a href="/admin/users?_page_number=[% users.paging.next_page_number %]">Next Page &raquo;</a><br>
+[% IF users.paging.total_pages > 1 %]
+<div class="pagination">
+<ul>
+[% page_num = 1 %]
+[% WHILE page_num <= users.paging.total_pages %]
+<li><a href="/admin/users?_page_number=[% page_num %]"></li>
+[% END %]
+</ul>
+</div>
+
+[% END %]
 
 [% END %]
     
