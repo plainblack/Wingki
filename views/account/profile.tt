@@ -21,22 +21,4 @@
     </tr>
 </table>
 
-<h2>Designers This User Controls</h2>
-<ul>
-[% FOREACH designer IN designers.items %]
-    <li><a href="[% designer.shop_uri %]">[% designer.name %]</a></li>
-[% END %]
-</ul>
-
-<h2>Ratings and Reviews This User Has Given</h2>
-[% FOREACH review IN reviews.items %]
-    <div class="gamead">
-        [% INCLUDE includes/gamead.tt game=review.game full_game_ad=1 %]
-    </div>
-    <div class="review" style="width: 750px; float: left;">
-        [% INCLUDE includes/review.tt %]
-    </div>
-    <div class="clearer"></div>
-[% END %]
-
 [% INCLUDE includes/basic_footer.tt %]

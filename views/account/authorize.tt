@@ -27,15 +27,6 @@
     edit_my_files   = "Edit your files and folders."
     view_my_account = "View your private account information like your email address."
     edit_my_account = "Edit your private account information including your password."
-    view_my_games   = "View your games."
-    edit_my_games   = "Edit your games."
-    view_my_designers   = "View your designers."
-    edit_my_designers   = "Edit your designers."
-    view_my_carts   = "View your shopping carts and wishlists."
-    edit_my_carts   = "Edit your shopping carts and wishlists."
-    view_my_reviews   = "View your game reviews."
-    edit_my_reviews   = "Edit your game reviews."
-    view_my_receipts   = "View your purchase history."
 }%]
 
 <h1>[% page_title %]</h1>
