@@ -41,7 +41,7 @@ any '/logout' => sub {
 get '/account/apikeys' => sub {
     my $user = get_user_by_session_id();
     my $api_keys = $user->api_keys;
-    template 'account/apikeys', {current_user => describe($user, $user), apikeys => format_list($api_keys, };
+    template 'account/apikeys', {current_user => describe($user, $user), apikeys => format_list($api_keys) };
 };
 
 post '/account/apikey' => sub {
@@ -68,7 +68,7 @@ get '/account/apikey/:id' => sub {
     my $current_user = get_user_by_session_id();
     my $api_key = fetch_object('APIKey');
     $api_key->can_use($current_user);
-    template 'account/apikey', { current_user => describe($current_user, $current_user), apikey => describe($api_key, $current_user, };
+    template 'account/apikey', { current_user => describe($current_user, $current_user), apikey => describe($api_key, $current_user) };
 };
 
 del '/account/apikey/:id' => sub {
