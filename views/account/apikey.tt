@@ -1,0 +1,47 @@
+[% INCLUDE includes/account_header.tt %]
+
+<div class="floating_block">
+<fieldset>
+<legend>API Key</legend>
+
+<b>Public Key</b><br>
+[% apikey.id %]<br><br>
+
+<b>Private Key</b><br>
+<div>[% apikey.private_key %]</div><br>
+
+<form action="/account/apikey/[% apikey.id %]?X-HTTP-Method=DELETE" method="POST" enctype="multipart/form-data">
+<div class="field">
+<input class="button" type="submit" value="Delete This Key" onclick="return confirm('Are you sure?');">
+</div>
+</form>
+
+</fieldset>
+</div>
+<div class="floating_block">
+<form action="/account/apikey/[% apikey.id %]" method="POST" enctype="multipart/form-data">
+<fieldset>
+<legend>Update API Key Details</legend>
+<div class="field">
+    <label for="name">Application Name</label><br>
+    <input type="text" name="name" id="name" value="[% apikey.name FILTER html %]"><br>
+    This must be unique among all applications in our system.<br><br>
+</div>
+<div class="field">
+    <label for="uri">Application URL</label><br>
+    <input type="text" name="uri" id="uri" value="[% apikey.uri FILTER html %]"><br>
+    Optional, but appreciated. The URL of your application if it is a web app.<br><br>
+</div>
+<div class="field">
+    <label for="reason">Reason</label><br>
+    <input type="text" name="reason" id="reason" value="[% apikey.reason FILTER html %]"><br>
+    Optional, but appreciated. The reason you are building your app. What does it do?<br><br>
+</div>
+<div class="field">
+    <input class="button" type="submit" value="Create"><br>
+</div>
+</fieldset>
+</form>
+</div>
+
+[% INCLUDE includes/account_footer.tt %]

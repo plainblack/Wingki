@@ -1,0 +1,47 @@
+[% INCLUDE includes/account_header.tt %]
+
+<div class="floating_block">
+<form action="/account/apikey" method="POST" enctype="multipart/form-data">
+<fieldset>
+<legend>Create An API Key</legend>
+<div class="field">
+    <label for="name">Application Name</label><br>
+    <input type="text" name="name" id="name"><br>
+    This must be unique among all applications in our system.<br>
+</div>
+<div class="field">
+    <label for="uri">Application URL</label><br>
+    <input type="text" name="uri" id="uri"><br>
+    Optional, but appreciated. The URL of your application if it is a web app.<br>
+</div>
+<div class="field">
+    <label for="reason">Reason</label><br>
+    <input type="text" name="reason" id="reason"><br>
+    Optional, but appreciated. The reason you are building your app. What does it do?<br>
+</div>
+<div class="field">
+    <input class="button" type="submit" value="Create"><br>
+</div>
+</fieldset>
+</form>
+</div>
+
+<div class="floating_block">
+<table>
+<tr>
+    <th>Application Name</th>
+    <th>Public Key</th>
+</tr>
+[% FOREACH item IN apikeys.items %]
+<tr>
+    <td><a href="/account/apikey/[% item.id %]">[% item.name %]</a></td>
+    <td>[% item.id %]</td>
+</tr>
+[% END %]
+</table>
+
+<p>Use your API keys with our <a href="/developer/">API documentation</a> to build your own applications.</p>
+
+</div>
+
+[% INCLUDE includes/account_footer.tt %]

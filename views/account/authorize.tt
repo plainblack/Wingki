@@ -1,0 +1,65 @@
+[% head_tags = BLOCK %]
+<style type="text/css">
+.permission {
+    border: 1px solid black;
+    background-color: hsl(39, 100%, 50%);
+    padding: 5px;
+    width: 300px;
+    float: left;
+    margin: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+.permission img {
+    float: left;
+}
+.permission span {
+    float: left;
+    width: 170px;
+    margin-left: 10px;
+}
+</style>
+[% END %]
+[% INCLUDE includes/account_header.tt %]
+
+[% permissions = {
+    view_my_files   = "View your files and folders."
+    edit_my_files   = "Edit your files and folders."
+    view_my_account = "View your private account information like your email address."
+    edit_my_account = "Edit your private account information including your password."
+    view_my_games   = "View your games."
+    edit_my_games   = "Edit your games."
+    view_my_designers   = "View your designers."
+    edit_my_designers   = "Edit your designers."
+    view_my_carts   = "View your shopping carts and wishlists."
+    edit_my_carts   = "Edit your shopping carts and wishlists."
+    view_my_reviews   = "View your game reviews."
+    edit_my_reviews   = "Edit your game reviews."
+    view_my_receipts   = "View your purchase history."
+}%]
+
+<h1>[% page_title %]</h1>
+<form action="/sso/authorize" method="POST" enctype="multipart/form-data">
+<a href="[% api_key.uri %]" target="_new">[% api_key.name %]</a> has requested the following permissions from your account:
+<input type="hidden" name="sso_id" value="[% sso_id || params.sso_id %]">
+    <br><br>
+[% FOREACH permission IN requested_permissions %]
+        <div class="permission">
+            <img src="[% settings.cdn_prefix %]/permissions/[% permission %].png" alt="[% permission %]">
+            <span>[% permissions.${permission} %]</span>
+            <div class="clearer"></div>
+        </div>
+        <input type="hidden" name="permission" value="[% permission %]">
+[% END %]
+<div class="clearer"></div>
+    <br>
+
+<input class="button green" type="submit" value="Approve"> <button class="button red" onclick="alert('You must either approve this request, or navigate away from the page. You cannot proceed without approving.'); return false;">Deny</button><br><br>
+</form>
+
+<p>
+<b>Why am I seeing this message?</b><br>
+Our forum software isn't hosted on the same server as the shop, so you'll see this message when you go to our community site. In addition, The Game Crafter now supports applications from third party developers. This means that programmers can create new website tools and mobile apps that work with The Game Crafter service. These applications don't require a separate username or password because they use your TGC user account. As a safety precaution, you will need to approve access to an application the first time you attempt to you use.
+</p>
+
+[% INCLUDE includes/account_footer.tt %]

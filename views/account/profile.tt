@@ -1,0 +1,42 @@
+[% INCLUDE includes/basic_header.tt %]
+
+[% IF profile_user.avatar_uri %]
+<img src="[% profile_user.avatar_uri %]" style="float: right;">
+[% END %]
+<h1>Profile for [% profile_user.display_name %]</h1>
+
+
+<table>
+    <tr>
+        <th>Known As</th>
+        <td>[% profile_user.display_name %]</td>
+    </tr>
+    <tr>
+        <th>Member Since</th>
+        <td>[% date(profile_user.date_created,'%F') %]</td>
+    </tr>
+    <tr>
+        <th>Last Login</th>
+        <td>[% date(profile_user.last_login,'%F') %]</td>
+    </tr>
+</table>
+
+<h2>Designers This User Controls</h2>
+<ul>
+[% FOREACH designer IN designers.items %]
+    <li><a href="[% designer.shop_uri %]">[% designer.name %]</a></li>
+[% END %]
+</ul>
+
+<h2>Ratings and Reviews This User Has Given</h2>
+[% FOREACH review IN reviews.items %]
+    <div class="gamead">
+        [% INCLUDE includes/gamead.tt game=review.game full_game_ad=1 %]
+    </div>
+    <div class="review" style="width: 750px; float: left;">
+        [% INCLUDE includes/review.tt %]
+    </div>
+    <div class="clearer"></div>
+[% END %]
+
+[% INCLUDE includes/basic_footer.tt %]
