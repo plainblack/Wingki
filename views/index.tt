@@ -1,0 +1,78 @@
+[% INCLUDE header_include.tt %]
+
+[% IF pages.items.size %]
+
+<table>
+<tr>
+    <th>Title</th>
+    <th>Last Updated</th>
+</tr>
+[% FOREACH page IN pages.items %]
+<tr>
+    <td><a href="/wiki/[% page.id %]">[% page.name %]</a></td>
+    <td>[% page.date_updated %]</td>
+</tr>
+[% END %]
+</table>
+
+<b>Total: [% users.paging.total_items %]<br>
+[% IF users.paging.total_pages > 1 %]
+<div class="pagination">
+<ul>
+[% page_num = 1 %]
+[% WHILE page_num <= users.paging.total_pages %]
+    <li><a href="/admin/users?_page_number=[% page_num %];do_the_search=true;query=[% query %]">[% page_num %]</a></li>
+    [% page_num = page_num+1 %]
+[% END %]
+</ul>
+</div>
+
+[% END %]
+
+[% END %]
+    
+<div class="floating_block">
+<form  action="/admin/users" method="GET">
+<fieldset>
+<legend>Search By Username or Email</legend>
+<div class="field">
+    <label for="query">Username or Email</label><br>
+    <input type="text" name="query" value="[% params.query FILTER html %]" id="query"><br>
+    Type the first part of a username or email address.<br>
+</div>
+<div class="field">
+    <input type="hidden" name="do_the_search" value="true"><br>
+    <input class="button" type="submit" value="Search"><br>
+</div>
+</fieldset>
+</form>
+</div>
+
+<div class="floating_block">
+<form action="/admin/user" method="POST">
+<fieldset>
+<legend>Add A User</legend>
+<div class="field">
+    <label for="username">Username</label><br>
+    <input type="text" name="username" id="username"><br>
+</div>
+<div class="field">
+    <label for="full_name">Full Name</label><br>
+    <input type="text" name="full_name" id="full_name"><br>
+</div>
+<div class="field">
+    <label for="email">Email</label><br>
+    <input type="text" name="email" id="email"><br>
+</div>
+<div class="field">
+    <label for="password">Password</label><br>
+    <input type="text" name="password" id="password"><br>
+</div>
+<div class="field">
+    <input class="button" type="submit" value="Create"><br>
+</div>
+</fieldset>
+</form>
+</div>
+
+[% INCLUDE footer_include.tt %]
