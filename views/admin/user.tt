@@ -1,4 +1,4 @@
-[% INCLUDE admin/admin_header.tt %]
+[% INCLUDE admin/header_include.tt %]
 
 <form action="/admin/user/[% user.id %]" method="POST" enctype="multipart/form-data">
 <div class="floating_block">
@@ -67,4 +67,4 @@
 
 
 
-[% INCLUDE admin/admin_footer.tt %]
+[% INCLUDE admin/footer_include.tt %]
