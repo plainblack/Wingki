@@ -1,6 +1,6 @@
+[% page_title = "Success!" %]
 [% INCLUDE account/header_include.tt %]
 
-<h1>Success!</h1>
 You have successfully logged in to the app.
 
 [% INCLUDE account/footer_include.tt %]
