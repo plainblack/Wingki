@@ -12,7 +12,7 @@ sub {
     say "done adding admin...creating api key";
 
     my $key = $db->resultset('APIKey')->new({});
-    $key->name('[% project %]');
+    $key->name('Wingki');
     $key->user_id($admin->id);
     $key->insert;
     Wing->config->set('default_api_key', $key->id);
