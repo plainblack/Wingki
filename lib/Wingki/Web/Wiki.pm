@@ -1,4 +1,4 @@
-package TGC::Web::Wiki;
+package Wingki::Web::Wiki;
 
 use Dancer ':syntax';
 use Wing::Perl;
