@@ -1,4 +1,4 @@
-[% INCLUDE header_include.tt %]
+[% INCLUDE account/header_include.tt %]
 <p>Welcome [% current_user.display_name FILTER html %]. Not [% current_user.display_name FILTER html %]? <a href="/logout">Click here</a>.</p>
 
 <form action="/account" method="POST" enctype="multipart/form-data">
@@ -58,4 +58,4 @@
 
 </form>
 
-[% INCLUDE footer_include.tt %]
+[% INCLUDE account/footer_include.tt %]

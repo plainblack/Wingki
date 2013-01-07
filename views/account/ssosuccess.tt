@@ -1,6 +1,6 @@
-[% INCLUDE header_include.tt %]
+[% INCLUDE account/header_include.tt %]
 
 <h1>Success!</h1>
 You have successfully logged in to the app.
 
-[% INCLUDE footer_include.tt %]
+[% INCLUDE account/footer_include.tt %]

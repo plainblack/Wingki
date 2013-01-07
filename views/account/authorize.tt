@@ -20,7 +20,7 @@
 }
 </style>
 [% END %]
-[% INCLUDE header_include.tt %]
+[% INCLUDE account/header_include.tt %]
 
 [% permissions = {
     view_my_account = "View your private account information like your email address."
@@ -46,4 +46,4 @@
 <input class="button green" type="submit" value="Approve"> <button class="button red" onclick="alert('You must either approve this request, or navigate away from the page. You cannot proceed without approving.'); return false;">Deny</button><br><br>
 </form>
 
-[% INCLUDE footer_include.tt %]
+[% INCLUDE account/footer_include.tt %]

@@ -1,4 +1,4 @@
-[% INCLUDE header_include.tt %]
+[% INCLUDE account/header_include.tt %]
 
 <div class="floating_block">
 <form action="/account/apikey" method="POST" enctype="multipart/form-data">
@@ -44,4 +44,4 @@
 
 </div>
 
-[% INCLUDE footer_include.tt %]
+[% INCLUDE account/footer_include.tt %]

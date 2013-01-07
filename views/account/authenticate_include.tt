@@ -1,4 +1,4 @@
-[% INCLUDE login_include.tt %]
+[% INCLUDE account/login_include.tt %]
 
 <div class="floating_block">
 <form action="/account/create" method="POST" enctype="multipart/form-data">
