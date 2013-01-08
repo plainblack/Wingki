@@ -1,34 +1,58 @@
 [% INCLUDE header_include.tt %]
 
+
 [% IF pages.items.size %]
+<div>
 
 <table>
 <tr>
     <th>Title</th>
     <th>Last Updated</th>
 </tr>
-[% FOREACH page IN pages.items %]
-<tr>
-    <td><a href="/wiki/[% page.id %]">[% page.name %]</a></td>
-    <td>[% page.date_updated %]</td>
-</tr>
-[% END %]
+    [% FOREACH page IN pages.items %]
+    <tr>
+        <td><a href="/wiki/[% page.id %]">[% page.name %]</a></td>
+        <td>[% page.date_updated %]</td>
+    </tr>
+    [% END %]
 </table>
 
 <b>Total: [% users.paging.total_items %]<br>
-[% IF users.paging.total_pages > 1 %]
-<div class="pagination">
-<ul>
-[% page_num = 1 %]
-[% WHILE page_num <= users.paging.total_pages %]
-    <li><a href="/admin/users?_page_number=[% page_num %];do_the_search=true;query=[% query %]">[% page_num %]</a></li>
-    [% page_num = page_num+1 %]
-[% END %]
-</ul>
+    [% IF users.paging.total_pages > 1 %]
+        <div class="pagination">
+        <ul>
+        [% page_num = 1 %]
+        [% WHILE page_num <= users.paging.total_pages %]
+            <li><a href="/admin/users?_page_number=[% page_num %];do_the_search=true;query=[% query %]">[% page_num %]</a></li>
+            [% page_num = page_num+1 %]
+        [% END %]
+        </ul>
+        </div>
+    [% END %]
 </div>
-
 [% END %]
 
-[% END %]
+<div>
+<form action="/wiki" method="POST">
+<fieldset>
+<legend>Add a new wiki page</legend>
+</fieldset>
+<div class="control-group">
+    <label class="control-label" for="name">Title</label>
+    <div class="controls">
+    <input type="text" name="name" id="name">
+    </div>
+</div>
+<div class="control-group">
+    <label class="control-label" for="description">Description</label>
+    <div class="controls">
+    <textarea name="name" id="description"></textarea>
+    </div>
+</div>
+<div>
+<input class="button" type="submit" value="Create">
+</div>
+</form>
+</div>
     
 [% INCLUDE footer_include.tt %]
