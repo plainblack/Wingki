@@ -24,7 +24,7 @@ post '/wiki' => sub {
     }
     else {
         $object->insert;
-        return redirect '/wiki/'.$object->id.'?success_message=Created succssfully.';
+        return redirect '/wiki/'.$object->uri_part.'?success_message=Created succssfully.';
     }
 };
 
