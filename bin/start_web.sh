@@ -2,5 +2,11 @@
 . /data/Wing/bin/dataapps.sh
 cd /data/Wingki/bin
 export WING_CONFIG=/data/Wingki/etc/wing.conf
-start_server --port 5001 -- starman --workers 2 --user nobody --group nobody --preload-app web.psgi
+if [ $UID == 0 ] 
+  then
+	echo "switching root to nobody"
+	export RUNAS="--user nobody --group nobody"
+fi
+
+start_server --port 5001 -- starman --workers 2 --preload-app web.psgi
 

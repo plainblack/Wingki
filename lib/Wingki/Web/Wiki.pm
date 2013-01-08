@@ -24,13 +24,17 @@ post '/wiki' => sub {
     }
     else {
         $object->insert;
-        return redirect '/wiki/'.$object->id.'?success_message=Created succssfully.';
+        return redirect '/wiki/'.$object->uri_part.'?success_message=Created succssfully.';
     }
 };
 
-get '/wiki/:id' => sub {
+get '/wiki/:uri_part' => sub {
     my $current_user = get_user_by_session_id();
-    my $wiki = fetch_object('Wiki');
+    Wing->log->warn("uri_part: ".params->{uri_part});
+    my $wiki = site_db()->resultset('Wiki')->search({ uri_part => params->{uri_part}},{rows => 1})->single;
+    unless (defined $wiki) {
+        ouch 404, 'Wiki page not found.';
+    }
     $wiki->can_use($current_user);
     template 'wiki/view', {
         current_user => describe($current_user),
@@ -43,7 +47,7 @@ put '/wiki/:id' => sub {
     my $object = fetch_object('Wiki');
     $object->can_use($current_user);
     $object->update({param()});
-    return redirect '/wiki/'.$object->id;
+    return redirect '/wiki/'.$object->uri_part;
 };
 
 del '/wiki/:id' => sub {
