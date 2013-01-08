@@ -6,7 +6,7 @@
 </div>
 
 <div>
-<form action="/wiki/[% wiki.id %]" method="DELETE">
+<form action="/wiki/[% wiki.id %]?X-HTTP-Method=DELETE" method="POST">
 <input class="button" type="submit" value="Delete this page">
 </form>
 </div>
