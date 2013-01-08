@@ -5,11 +5,50 @@
 <div>[% wiki.description %]</div>
 </div>
 
-<div>
-<form action="/wiki/[% wiki.id %]?X-HTTP-Method=DELETE" method="POST">
-<input class="btn btn-danger" type="submit" value="Delete this page">
+<hr>
+
+<div id="wiki_buttons">
+<form action="/wiki/[% wiki.id %]?X-HTTP-Method=DELETE" method="POST" class="form-inline">
+<button class="btn btn-success" onclick="edit_page(); return false;">Edit</button>
+<input class="btn btn-danger" type="submit" value="Delete">
 </form>
 </div>
 
+<div id="wiki_edit" style="display: none;">
+<form action="/wiki/[% wiki.id %]?X-HTTP-Method=PUT" method="POST" class="form-horizontal">
+  <div class="control-group">
+    <label class="control-label" for="name">Name</label>
+    <div class="controls">
+      <input type="text" name="name" id="name" value="[% wiki.name FILTER html %]">
+    </div>
+  </div>
+  <div class="control-group">
+    <label class="control-label" for="description">Description</label>
+    <div class="controls">
+      <textarea id="description" name="description" class="input-xxlarge" rows="20">[% wiki.description FILTER html %]</textarea>
+    </div>
+  </div>
+  <div class="control-group">
+    <div class="controls">
+      <button type="submit" class="btn btn-success">Save</button>
+      <button class="btn" onclick="cancel_edit_page(); return false;">Cancel</button>
+    </div>
+  </div>
+</form>
+</div>
+
+
    
+[% foot_tags = BLOCK %]
+<script type="text/javascript">
+function edit_page() {
+ $('#wiki_buttons').css('display', 'none');
+ $('#wiki_edit').css('display', 'block');
+}
+function cancel_edit_page() {
+ $('#wiki_buttons').css('display', 'block');
+ $('#wiki_edit').css('display', 'none');
+}
+</script>
+[% END %]
 [% INCLUDE footer_include.tt %]
