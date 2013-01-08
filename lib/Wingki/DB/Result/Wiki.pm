@@ -6,6 +6,7 @@ use Ouch;
 extends 'Wing::DB::Result';
 
 with 'Wing::Role::Result::Field';
+with 'Wing::Role::Result::UriPart';
 
 __PACKAGE__->wing_fields(
     name           => {

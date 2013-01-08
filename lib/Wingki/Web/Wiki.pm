@@ -28,9 +28,13 @@ post '/wiki' => sub {
     }
 };
 
-get '/wiki/:id' => sub {
+get '/wiki/:uri_part' => sub {
     my $current_user = get_user_by_session_id();
-    my $wiki = fetch_object('Wiki');
+    Wing->log->warn("uri_part: ".params->{uri_part});
+    my $wiki = site_db()->resultset('Wiki')->search({ uri_part => params->{uri_part}},{rows => 1})->single;
+    unless (defined $wiki) {
+        ouch 404, 'Wiki page not found.';
+    }
     $wiki->can_use($current_user);
     template 'wiki/view', {
         current_user => describe($current_user),
