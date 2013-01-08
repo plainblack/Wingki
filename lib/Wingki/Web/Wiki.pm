@@ -47,7 +47,7 @@ put '/wiki/:id' => sub {
     my $object = fetch_object('Wiki');
     $object->can_use($current_user);
     $object->update({param()});
-    return redirect '/wiki/'.$object->id;
+    return redirect '/wiki/'.$object->uri_part;
 };
 
 del '/wiki/:id' => sub {
