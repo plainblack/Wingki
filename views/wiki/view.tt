@@ -7,12 +7,9 @@
 
 <div>
 <form action="/wiki/[% wiki.id %]?X-HTTP-Method=DELETE" method="POST">
-<input class="button" type="submit" value="Delete this page">
+<input class="btn btn-danger" type="submit" value="Delete this page">
 </form>
 </div>
 
-<div>
-Back to the <a href="/">Wiki home page</a>.
-</div>
    
 [% INCLUDE footer_include.tt %]

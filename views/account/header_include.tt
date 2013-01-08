@@ -13,6 +13,7 @@
 <div class="navbar">
   <div class="navbar-inner">
     <ul class="nav">
+      <li><a href="/">Home</a></li>
       <li><a href="/account">Account</a></li>
       [% IF current_user.developer %]
         <li><a href="/account/apikeys">API Keys</a></li>

@@ -8,8 +8,7 @@ use Wing::Web;
 
 get '/' => sub {
     my $user = get_user_by_session_id();
-    my $pages = site_db->resultset('Wiki')->search();
-    template 'index', { current_user => describe($user), pages => format_list($pages) };
+    template 'index', { current_user => describe($user) };
 };
 
 post '/wiki' => sub {
