@@ -22,7 +22,7 @@
 </tr>
 </thead>
 <tbody id="users">
-<tr><td colspan="4">No results</td></tr>
+<tr><td colspan="4"></td></tr>
 </tbody>
 </table>
 <div class="pagination"></div>

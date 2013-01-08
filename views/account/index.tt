@@ -65,14 +65,8 @@
 <div class="control-group">
     <label class="control-label">Are you a software developer?</label>
     <div class="controls">
-     <label class="radio inline" for="developer_yes">
-      <input type="radio" name="developer" value="1" id="developer_yes"[% IF current_user.developer %] checked=1[% END %]>
-      Yes
-     </label>
-     <label class="radio inline" for="developer_no">
-      <input type="radio" name="developer" value="0" id="developer_no"[% UNLESS current_user.developer %] checked=1[% END %]>
-      No
-     </label>
+     <label class="radio inline" for="developer_yes"><input type="radio" name="developer" value="1" id="developer_yes"[% IF current_user.developer %] checked=1[% END %]>Yes</label>
+     <label class="radio inline" for="developer_no"><input type="radio" name="developer" value="0" id="developer_no"[% UNLESS current_user.developer %] checked=1[% END %]>No</label>
     [% IF current_user.developer %]
     <p><a href="/account/apikeys">Manage API keys.</a></p>
     [% END %]
