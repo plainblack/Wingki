@@ -4,16 +4,7 @@
 <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
 <script src="//cdn.jsdelivr.net/pnotify/1.2/jquery.pnotify.min.js"></script>
 <script src="/wing.js" type="text/javascript"></script>
-[% IF params.status_message || status_message %]
-<script type="text/javascript">
-$(document).ready(function() {
- $.pnotify({
-    title: 'Status',
-    text: "[% params.status_message || status_message FILTER html FILTER replace('\n','; ') %]" 
- });
-});
-</script>
-[% END %]
+[% INCLUDE status_include.tt %]
 [% section_foot_tags %]
 [% foot_tags %]
 

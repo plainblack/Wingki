@@ -21,11 +21,11 @@ post '/wiki' => sub {
         $object->verify_posted_params(\%params, $current_user);
     };
     if (hug) {
-        return redirect '/?status_message='.bleep;
+        return redirect '/?error_message='.bleep;
     }
     else {
         $object->insert;
-        return redirect '/wiki/'.$object->id.'?status_message=Created succssfully.';
+        return redirect '/wiki/'.$object->id.'?success_message=Created succssfully.';
     }
 };
 

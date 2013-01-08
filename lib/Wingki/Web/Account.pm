@@ -14,19 +14,19 @@ get '/login' => sub {
 };
 
 post '/login' => sub {
-    return template 'account/login', { status_message => 'You must specify a username or email address.'} unless params->{login};
-    return template 'account/login', { status_message => 'You must specify a password.'} unless params->{password};
+    return template 'account/login', { error_message => 'You must specify a username or email address.'} unless params->{login};
+    return template 'account/login', { error_message => 'You must specify a password.'} unless params->{password};
     my $user = site_db()->resultset('User')->search({username => params->{login}},{rows=>1})->single;
     unless (defined $user) {
         $user = site_db()->resultset('User')->search({email => params->{login}},{rows=>1})->single;
-        return template 'account/login', { status_message => 'User not found.'} unless defined $user;
+        return template 'account/login', { error_message => 'User not found.'} unless defined $user;
     }
 
     # validate password
     if ($user->is_password_valid(params->{password})) {
         return login($user);
     }
-    template 'account/login', { status_message => 'Password incorrect.'};
+    template 'account/login', { error_message => 'Password incorrect.'};
 };
 
 any '/logout' => sub {
@@ -46,7 +46,6 @@ get '/account/apikeys' => sub {
 
 post '/account/apikey' => sub {
     my $current_user = get_user_by_session_id();
-    my $status_message = 'Created successfully.';
     my $object = site_db()->resultset('APIKey')->new({});
     $object->user($current_user);
     my %params = params;
@@ -55,13 +54,13 @@ post '/account/apikey' => sub {
         $object->verify_posted_params(\%params, $current_user);
     };
     if (hug) {
-        $status_message = bleep;
+        return redirect '/account/apikeys?error_message='.bleep;
     }
     else {
         $object->private_key(random_string('ssssssssssssssssssssssssssssssssssss'));
         $object->insert;
+        return redirect '/account/apikeys?success_message=Created successfully.';
     }
-    return redirect '/account/apikeys?status_message='.$status_message;
 };
 
 get '/account/apikey/:id' => sub {
@@ -84,18 +83,16 @@ post '/account/apikey/:id' => sub {
     my $current_user = get_user_by_session_id();
     my $object = fetch_object('APIKey');
     $object->can_use($current_user);
-    my $status_message = 'Updated successfully.';
     my %params = params;
     eval {
         $object->verify_posted_params(\%params, $current_user);
     };
     if (hug) {
-        $status_message = bleep;
-        return redirect '/account/apikey/'.$object->id.'?status_message='.$status_message;
+        return redirect '/account/apikey/'.$object->id.'?error_message='.bleep;
     }
     else {
         $object->update;
-        return redirect '/account/apikeys?status_message='.$status_message;
+        return redirect '/account/apikeys?success_message=Updated successfully';
     }
 };
 
@@ -106,7 +103,6 @@ get '/account' => sub {
 
 post '/account' => sub {
     my $user = get_user_by_session_id();
-    my $status_message = 'Updated successfully.';
     my %params = params;
     eval {
         $user->verify_posted_params(\%params, $user);
@@ -120,16 +116,15 @@ post '/account' => sub {
         }
     };
     if ($@) {
-        $status_message = bleep;
+        redirect '/account?error_message='.bleep;
     }
     else {
         $user->update;
+        redirect '/account?success_message=Updated successfully.';
     }
-    redirect '/account?status_message='.$status_message;
 };
 
 post '/account/create' => sub {
-    my $status_message = 'Created successfully.';
     my %params = params;
     my $user = site_db()->resultset('User')->new({});
     eval {
@@ -143,7 +138,7 @@ post '/account/create' => sub {
         }
     };
     if ($@) {
-        return template 'account/login', { status_message => bleep };
+        return template 'account/login', { error_message => bleep };
     }
     $user->insert;
     return login($user);
@@ -154,11 +149,11 @@ get '/account/reset-password' => sub {
 };
 
 post '/account/reset-password' => sub {
-    return template 'account/reset-password', {status_message => 'You must supply an email address or username.'} unless params->{login};
+    return template 'account/reset-password', {error_message => 'You must supply an email address or username.'} unless params->{login};
     my $user = site_db()->resultset('User')->search({username => params->{login}},{rows=>1})->single;
     unless (defined $user) {
         $user = site_db()->resultset('User')->search({email => params->{login}},{rows=>1})->single;
-        return template 'account/reset-password', {status_message => 'User not found.'} unless defined $user;
+        return template 'account/reset-password', {error_message => 'User not found.'} unless defined $user;
     }
 
     # validate password
@@ -173,7 +168,7 @@ post '/account/reset-password' => sub {
         );
         return redirect '/account/reset-password-code';
     }
-    return template 'account/reset-password', {status_message => 'That account has no email address associated with it.'};
+    return template 'account/reset-password', {error_message => 'That account has no email address associated with it.'};
 };
 
 get '/account/reset-password-code' => sub {
@@ -181,19 +176,19 @@ get '/account/reset-password-code' => sub {
 };
 
 post '/account/reset-password-code' => sub {
-    return template 'account/reset-password-code', {status_message => 'You must supply a reset code.'} unless params->{code};
-    return template 'account/reset-password-code', {status_message => 'You must supply a new password.'} unless params->{password1};
+    return template 'account/reset-password-code', {error_message => 'You must supply a reset code.'} unless params->{code};
+    return template 'account/reset-password-code', {error_message => 'You must supply a new password.'} unless params->{password1};
     if (params->{password1} ne params->{password2}) {
-        return template 'account/reset-password-code', {status_message => 'The passwords you typed do not match.'};
+        return template 'account/reset-password-code', {error_message => 'The passwords you typed do not match.'};
     }
 
     my $user_id = Wing->cache->get('password_reset'.params->{code});
     unless ($user_id) {
-        return template 'account/reset-password-code', {status_message => 'That is an invalid code.'};
+        return template 'account/reset-password-code', {error_message => 'That is an invalid code.'};
     }
     my $user = site_db()->resultset('User')->find($user_id);
     unless (defined $user) {
-        return template 'account/reset-password-code', {status_message => 'The user attached to that code no longer exists.'};
+        return template 'account/reset-password-code', {error_message => 'The user attached to that code no longer exists.'};
     }
     $user->encrypt_and_set_password(params->{password1});
     return login($user);
