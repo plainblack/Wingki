@@ -15,6 +15,7 @@ __PACKAGE__->wing_fields(
     },
     description    => {
         dbic                => { data_type => 'mediumtext', is_nullable => 1 },
+        view                => 'public',
         edit                => 'postable',
     },
 );
