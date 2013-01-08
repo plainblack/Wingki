@@ -14,29 +14,29 @@ get '/' => sub {
 
 post '/wiki' => sub {
     my $current_user = get_user_by_session_id();
-    my $status_message = 'Created successfully.';
     my $object = site_db()->resultset('Wiki')->new({});
-    my %params = params();
+    my %params = params;
     eval {
         $object->verify_creation_params(\%params, $current_user);
         $object->verify_posted_params(\%params, $current_user);
     };
     if (hug) {
-        $status_message = bleep;
-        return redirect '/?status_message='.$status_message;
+        return redirect '/?status_message='.bleep;
     }
     else {
         $object->insert;
-        return redirect '/wiki/'.$object->id.'?status_message='.$status_message;
+        return redirect '/wiki/'.$object->id.'?status_message=Created succssfully.';
     }
 };
 
 get '/wiki/:id' => sub {
     my $current_user = get_user_by_session_id();
-    my $object = fetch_object('Wiki');
-    $object->can_use($current_user);
-    my $vars = $object->describe;
-    template 'wiki/view', $vars;
+    my $wiki = fetch_object('Wiki');
+    $wiki->can_use($current_user);
+    template 'wiki/view', {
+        current_user => describe($current_user),
+        wiki         => describe($wiki),
+    };
 };
 
 put '/wiki/:id' => sub {
@@ -52,7 +52,7 @@ del '/wiki/:id' => sub {
     my $object = fetch_object('Wiki');
     $object->can_use($current_user);
     $object->delete;
-    return redirect '//';
+    return redirect '/';
 };
 
 true;

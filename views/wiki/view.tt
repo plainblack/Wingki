@@ -1,12 +1,12 @@
 [% INCLUDE header_include.tt %]
 
 <div>
-<h2>[% name %]</h2>
-<div>[% desciption %]</div>
+<h2>[% wiki.name %]</h2>
+<div>[% wiki.description %]</div>
 </div>
 
 <div>
-<form action="/wiki/[%id%]" method="DELETE">
+<form action="/wiki/[% wiki.id %]" method="DELETE">
 <input class="button" type="submit" value="Delete this page">
 </form>
 </div>
