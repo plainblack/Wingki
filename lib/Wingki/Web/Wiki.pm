@@ -7,8 +7,12 @@ use Wing;
 use Wing::Web;
 
 get '/' => sub {
-    my $user = get_user_by_session_id();
-    template 'index', { current_user => describe($user) };
+    my $user = eval { get_user_by_session_id(); };
+    my $vars = {};
+    if ($user) {
+        $vars->{current_user} = describe($user);
+    }
+    template 'index', $vars;
 };
 
 post '/wiki' => sub {
@@ -29,17 +33,18 @@ post '/wiki' => sub {
 };
 
 get '/wiki/:uri_part' => sub {
-    my $current_user = get_user_by_session_id();
-    Wing->log->warn("uri_part: ".params->{uri_part});
+    my $current_user = eval { get_user_by_session_id(); };
     my $wiki = site_db()->resultset('Wiki')->search({ uri_part => params->{uri_part}},{rows => 1})->single;
     unless (defined $wiki) {
         ouch 404, 'Wiki page not found.';
     }
-    $wiki->can_use($current_user);
-    template 'wiki/view', {
-        current_user => describe($current_user),
+    my $vars = {
         wiki         => describe($wiki),
     };
+    if ($current_user) {
+        $vars->{current_user} = describe($current_user);
+    }
+    template 'wiki/view', $vars;
 };
 
 put '/wiki/:id' => sub {

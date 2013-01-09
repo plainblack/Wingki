@@ -7,12 +7,14 @@
 
 <hr>
 
+[% IF current_user %]
 <div id="wiki_buttons">
 <form action="/wiki/[% wiki.id %]?X-HTTP-Method=DELETE" method="POST" class="form-inline">
 <button class="btn btn-success" onclick="edit_page(); return false;">Edit</button>
 <input class="btn btn-danger" type="submit" value="Delete">
 </form>
 </div>
+[% END %]
 
 <div id="wiki_edit" style="display: none;">
 <form action="/wiki/[% wiki.id %]?X-HTTP-Method=PUT" method="POST" class="form-horizontal">
