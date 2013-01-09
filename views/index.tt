@@ -21,6 +21,7 @@
 <div class="pagination"></div>
 </div>
 
+[% IF current_user %]
 <div class="span6">
 <form action="/wiki" method="POST" class="form-horizontal">
 <fieldset>
@@ -45,6 +46,7 @@
 </fieldset>
 </form>
 </div>
+[% END %]
 
     
 </div><!-- row -->
