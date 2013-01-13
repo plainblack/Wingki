@@ -39,10 +39,10 @@ get '/wiki/:uri_part' => sub {
         ouch 404, 'Wiki page not found.';
     }
     my $vars = {
-        wiki         => describe($wiki, current_user => $user),
+        wiki         => describe($wiki, current_user => $current_user),
     };
     if ($current_user) {
-        $vars->{current_user} = describe($current_user, current_user => $user);
+        $vars->{current_user} = describe($current_user, current_user => $current_user);
     }
     template 'wiki/view', $vars;
 };
