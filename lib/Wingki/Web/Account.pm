@@ -66,14 +66,14 @@ post '/account/apikey' => sub {
 get '/account/apikey/:id' => sub {
     my $current_user = get_user_by_session_id();
     my $api_key = fetch_object('APIKey');
-    $api_key->can_use($current_user);
+    $api_key->can_view($current_user);
     template 'account/apikey', { current_user => describe($current_user, current_user => $current_user), apikey => describe($api_key, current_user => $current_user) };
 };
 
 del '/account/apikey/:id' => sub {
     my $current_user = get_user_by_session_id();
     my $api_key = fetch_object('APIKey');
-    $api_key->can_use($current_user);
+    $api_key->can_edit($current_user);
     $api_key->delete;
     redirect '/account/apikeys';
 };
@@ -82,7 +82,7 @@ del '/account/apikey/:id' => sub {
 post '/account/apikey/:id' => sub {
     my $current_user = get_user_by_session_id();
     my $object = fetch_object('APIKey');
-    $object->can_use($current_user);
+    $object->can_edit($current_user);
     my %params = params;
     eval {
         $object->verify_posted_params(\%params, $current_user);

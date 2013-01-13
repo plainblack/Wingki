@@ -50,7 +50,7 @@ get '/wiki/:uri_part' => sub {
 put '/wiki/:id' => sub {
     my $current_user = get_user_by_session_id();
     my $object = fetch_object('Wiki');
-    $object->can_use($current_user);
+    $object->can_edit($current_user);
     my %params = params;
     eval {
         $object->verify_posted_params(\%params, $current_user);
@@ -68,7 +68,7 @@ put '/wiki/:id' => sub {
 del '/wiki/:id' => sub {
     my $current_user = get_user_by_session_id();
     my $object = fetch_object('Wiki');
-    $object->can_use($current_user);
+    $object->can_edit($current_user);
     $object->delete;
     return redirect '/';
 };
