@@ -8,7 +8,7 @@ use Wing::Web;
 
 get '/admin/users' => sub {
     my $current_user = get_admin_by_session_id();
-    template 'admin/users', { current_user => describe($current_user) };
+    template 'admin/users', { current_user => describe($current_user, current_user => $current_user) };
 };
 
 post '/admin/user' => sub {
@@ -30,7 +30,7 @@ post '/admin/user' => sub {
 
 get '/admin/user/:id' => sub {
     my $current_user = get_admin_by_session_id();
-    template 'admin/user', { current_user => $current_user, page_title => 'Edit User', user => describe(fetch_object('User'), $current_user)};
+    template 'admin/user', { current_user => describe($current_user, current_user => $current_user), page_title => 'Edit User', user => describe(fetch_object('User'), current_user => $current_user)};
 };
 
 post '/admin/user/:id' => sub {
@@ -53,7 +53,7 @@ post '/admin/user/:id' => sub {
         template 'admin/user', { 
             error_message   => bleep,
             current_user    => $current_user, 
-            user            => describe(fetch_object('User'), $current_user),
+            user            => describe(fetch_object('User'), current_user => $current_user),
         };
     }
     else {

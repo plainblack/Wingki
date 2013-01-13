@@ -10,7 +10,7 @@ get '/' => sub {
     my $user = eval { get_user_by_session_id(); };
     my $vars = {};
     if ($user) {
-        $vars->{current_user} = describe($user);
+        $vars->{current_user} = describe($user, current_user => $user);
     }
     template 'index', $vars;
 };
@@ -39,10 +39,10 @@ get '/wiki/:uri_part' => sub {
         ouch 404, 'Wiki page not found.';
     }
     my $vars = {
-        wiki         => describe($wiki),
+        wiki         => describe($wiki, current_user => $user),
     };
     if ($current_user) {
-        $vars->{current_user} = describe($current_user);
+        $vars->{current_user} = describe($current_user, current_user => $user);
     }
     template 'wiki/view', $vars;
 };
