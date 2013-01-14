@@ -7,7 +7,7 @@
 
 <hr>
 
-[% IF current_user %]
+[% IF wiki.can_edit %]
 <div id="wiki_buttons">
 <form action="/wiki/[% wiki.id %]?X-HTTP-Method=DELETE" method="POST" class="form-inline">
 <button class="btn btn-success" onclick="edit_page(); return false;">Edit</button>
